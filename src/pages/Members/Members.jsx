@@ -49,7 +49,7 @@ function Members() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this member?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/members/${id}`, {
+        const response = await API.delete(`/api/members/${id}`, {
           method: 'DELETE',
         });
 

@@ -3,6 +3,7 @@ import { Plus, Type, Calendar, MapPin, Clock } from 'lucide-react';
 import axios from 'axios';
 import styles from './ServiceRequest.module.scss';
 import plumbing from '/plumbing.jpg';
+import API from '../../axios';
 
 const ServiceRequests = () => {
   const [posts, setPosts] = useState([]);
@@ -28,7 +29,7 @@ const ServiceRequests = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/service-requests');
+        const response = await API.get('/api/service-requests');
         setPosts(response.data);
       } catch (err) {
         console.error('Error fetching posts:', err);
