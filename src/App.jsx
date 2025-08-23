@@ -17,7 +17,7 @@ import Members from './pages/Members/Members';
 // import SubtaskDetail from './pages/Subtasks/SubtaskDetail';
 // import AssignForDetail from './pages/AssignFor/AssignForDetail';
 // import ContactWithUs from './pages/ContactWithUs/ContactWithUs';
-// import ServiceRequest from './pages/ServiceRequest/ServiceRequest';
+import ServiceRequest from './pages/ServiceRequest/ServiceRequest';
 // import ChatBox from './pages/ChatBox/ChatBox';
 import LoginForm from './LoginForm';
 import PrivateRoute from './PrivateRoute';
@@ -33,6 +33,7 @@ function App() {
             <Route index element={<Dashboard />} />
             
            <Route path="/members" element={<Members/>} />
+            <Route path="/servicerequest" element={<ServiceRequest/>} />
              {/* <Route path="/projects" element={<Projects/>} />
             <Route path="/tasks" element={<Tasks/>} />
             <Route path="/subtasks" element={<Subtasks/>} />
@@ -43,7 +44,7 @@ function App() {
             <Route path="/task/:id" element={<TaskDetail/>} />
             <Route path="/subTask/:id" element={<SubtaskDetail/>} />
             <Route path="/assignFor/:id" element={<AssignForDetail/>} />
-            <Route path="/servicerequest" element={<ServiceRequest/>} />
+           
             <Route path="/chatbox" element={<ChatBox/>} />
             <Route path="/contactwithus" element={<ContactWithUs/>} /> */} 
            </Route>
