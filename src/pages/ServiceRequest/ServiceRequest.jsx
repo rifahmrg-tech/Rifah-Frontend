@@ -43,7 +43,7 @@ const ServiceRequests = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/service-requests', {
+      const response = await API.post('/api/service-requests', {
         title: newPost.title,
         description: newPost.description,
         type: newPost.type,
