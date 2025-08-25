@@ -18,7 +18,7 @@ function Dashboard() {
     { title: 'Referral History', icon: History, color: '#FFB6C1', action: () => navigate('/referralhistory') },
     { title: 'Subscriptions', icon: Bell, color: '#FFB6C1', action: () => navigate('/subscriptions') },
     { title: 'Settings', icon: Settings, color: '#98FB98', action: () => navigate('/settings') },
-    { title: 'Connect With Us', icon: Phone, color: '#FFD700', action: () => navigate('/ContactWithUs') },
+    { title: 'Connect With Us', icon: Phone, color: '#FFD700', action: () => navigate('/contactwithus') },
     { title: 'Share the App', icon: Share2, color: '#C8A2C8', action: () => shareApp() }
   ];
 
