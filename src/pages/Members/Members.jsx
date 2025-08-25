@@ -11,12 +11,19 @@ function Members() {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedProfession, setSelectedProfession] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); 
 
   // Fetch members from backend
   useEffect(() => {
     const fetchMembers = async () => {
       try {
         const response = await API.get('/api/members');
+         
+         setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+
         const data = response.data;
         console.log(data);
         // Safe handling based on structure
@@ -77,6 +84,19 @@ function Members() {
       year: 'numeric'
     });
   };
+
+  if (loading) {
+  return (
+    <>
+     
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-white text-center">
+      <div class="loader"></div> <br/><br/>
+     <h5 className="text-secondary">Hold on, getting the providers details...</h5>
+    </div>
+    
+    </>
+  );
+}
 
   return (
     <div className={styles.members}>
