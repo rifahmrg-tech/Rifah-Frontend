@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API=axios.create({
-   //baseURL:"https://rifah-backend.onrender.com/",
-     baseURL:"http://localhost:5000",
+     baseURL:"https://rifah-backend.onrender.com/",
+     //baseURL:"http://localhost:5000",
      withCredentials:true
 });
 
