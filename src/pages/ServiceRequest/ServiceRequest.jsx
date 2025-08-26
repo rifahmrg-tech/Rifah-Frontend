@@ -155,7 +155,7 @@ const ServiceRequests = () => {
                 <span><Type size={16} /> {post.type}</span>
                 <span><MapPin size={16} /> {post.location}</span>
                 <span><Calendar size={16} /> {new Date(post.date).toISOString().split('T')[0]}</span>
-                <span><Clock size={16} /> Posted by: {post.postedBy?.name}</span> 
+                <span><Clock size={16} /> Posted by: {post.postedBy.name}</span> 
                 
               </div>
 
