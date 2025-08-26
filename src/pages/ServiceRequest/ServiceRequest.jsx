@@ -4,10 +4,12 @@ import axios from 'axios';
 import styles from './ServiceRequest.module.scss';
 import plumbing from '/plumbing.jpg';
 import API from '../../axios';
+import { useAuth } from '../../context/AuthContext';
 
 const ServiceRequests = () => {
   const [posts, setPosts] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const {user} = useAuth();
   const [newPost, setNewPost] = useState({
     title: '',
     description: '',
@@ -48,7 +50,7 @@ const ServiceRequests = () => {
         description: newPost.description,
         type: newPost.type,
         location: newPost.location,
-        postedBy: 'Current User', // Replace with actual user data (e.g., from auth context)
+        postedBy: user.memberId, // Replace with actual user data (e.g., from auth context)
       });
 
       setPosts([...posts, response.data]);
@@ -153,7 +155,8 @@ const ServiceRequests = () => {
                 <span><Type size={16} /> {post.type}</span>
                 <span><MapPin size={16} /> {post.location}</span>
                 <span><Calendar size={16} /> {new Date(post.date).toISOString().split('T')[0]}</span>
-                <span><Clock size={16} /> Posted by: {post.postedBy}</span>
+                <span><Clock size={16} /> Posted by: {post.postedBy?.name}</span> 
+                
               </div>
 
               <button className={styles.contactButton}>

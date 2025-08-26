@@ -16,7 +16,8 @@ function Sidebar({ isOpen, onClose }) {
     { path: '/myposts', icon: List, label: 'My Posts' },
     { path: '/referralhistory', icon: UserCheck, label: 'Referral History' },
     { path: '/subscriptions', icon: UserCheck, label: 'Subscriptions' },
-
+    
+    { path: '/service', icon: Settings, label: 'Services' },
     { path: '/settings', icon: Settings, label: 'Settings' },
   ];
 

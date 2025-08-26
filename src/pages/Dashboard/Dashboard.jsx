@@ -14,7 +14,7 @@ function Dashboard() {
     { title: 'Search Provider', icon: Search, color: '#4ECDC4', action: () => navigate('/members') },
     { title: 'Request a Service', icon: PlusCircle, color: '#45B7D1', action: () => navigate('/servicerequest') },
     { title: 'Provide a Service', icon: Handshake, color: '#FFEAA7', action: () => navigate('/provide-service') },
-    { title: 'My Posts', icon: List, color: '#DDA0DD', action: () => navigate('/my-posts') },
+    { title: 'My Posts', icon: List, color: '#DDA0DD', action: () => navigate('/myposts') },
     { title: 'Referral History', icon: History, color: '#FFB6C1', action: () => navigate('/referralhistory') },
     { title: 'Subscriptions', icon: Bell, color: '#FFB6C1', action: () => navigate('/subscriptions') },
     { title: 'Settings', icon: Settings, color: '#98FB98', action: () => navigate('/settings') },
