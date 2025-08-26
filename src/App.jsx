@@ -10,8 +10,9 @@ import ContactWithUs from './pages/ContactWithUs/ContactWithUs';
 import ServiceRequest from './pages/ServiceRequest/ServiceRequest';
 import LoginForm from './LoginForm';
 import PrivateRoute from './PrivateRoute';
-import Services from './pages/Services/Services';
-import MyPosts from './pages/MyPosts/Myposts';
+
+import MyPost from './pages/MyPosts/MyPost';
+
 
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
             
            <Route path="/members" element={<Members/>} />
             <Route path="/servicerequest" element={<ServiceRequest/>} />
-             <Route path="/service" element={<Services/>} />
+          
             <Route path="/contactwithus" element={<ContactWithUs/>} /> 
-            <Route path="/myposts" element={<MyPosts/>} /> 
+            <Route path="/myposts" element={<MyPost/>} /> 
            </Route>
           </Routes> 
         {/* </Layout> */}
