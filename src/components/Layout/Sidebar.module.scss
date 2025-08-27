@@ -112,9 +112,11 @@
   padding: var(--spacing-md) var(--spacing-lg);
   margin-bottom: var(--spacing-xs);
   border-radius: var(--radius-lg);
-  color: var(--text-secondary);
+  //color: var(--text-secondary);
+  color: black;
   text-decoration: none;
   font-weight: 500;
+  
   font-size: 0.9375rem;
   letter-spacing: 0.02em;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
