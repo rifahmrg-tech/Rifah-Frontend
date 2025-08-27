@@ -19,9 +19,7 @@ function Members() {
       try {
         const response = await API.get('/api/members');
          
-         setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+         setLoading(false);
 
 
         const data = response.data;
