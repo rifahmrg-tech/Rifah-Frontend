@@ -178,30 +178,16 @@
 }
 
 /* HTML: <div class="loader"></div> */
+
 .loader {
-  width: 40px;
-  aspect-ratio: 1;
-  display: flex;
-}
-.loader:before,
-.loader:after {
-  content: "";
-  flex: 1;
-  background: #f03355;
-  animation: l21 2s infinite;
-  border-radius: 100px 0 0 100px;
-  transform-origin: top right;
-  transform: translateY(calc(var(--s,1)*0%)) rotate(0);
-}
-.loader:after {
-  transform-origin: bottom left;
-  border-radius: 0 100px 100px 0;
-  --s:-1;
-}
-@keyframes l21 {
-  33%  {transform: translate(0,calc(var(--s,1)*50%)) rotate(0)}
-  66%  {transform: translate(0,calc(var(--s,1)*50%)) rotate(-90deg)}
-  90%,
-  100% {transform: translate(calc(var(--s,1)*-100%),calc(var(--s,1)*50%))  rotate(-90deg)}
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #e9ecef;
+  border-top-color: #007bff;
+  animation: spin 1s infinite ease-in-out;
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

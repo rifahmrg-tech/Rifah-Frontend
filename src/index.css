@@ -95,7 +95,7 @@ body, html {
 }
 
 /* HTML: <div class="loader"></div> */
-.loader {
+/* .loader {
   width: 20px;
   aspect-ratio: 1;
   background: #0e4104;
@@ -113,4 +113,17 @@ body, html {
    33% {clip-path: inset(0 0 0 -100px)}
    50% {clip-path: inset(0 0 0 0)     }
    83% {clip-path: inset(0 -100px 0 0)}
+} */
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #e9ecef;
+  border-top-color: #007bff;
+  animation: spin 1s infinite ease-in-out;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

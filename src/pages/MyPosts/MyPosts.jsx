@@ -116,7 +116,7 @@ import plumbing from '/plumbing.jpg';
 import API from '../../axios';
 import { useAuth } from '../../context/AuthContext';
 
-const ServiceRequests = () => {
+const MyPosts = () => {
   const [posts, setPosts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const { user } = useAuth();
@@ -222,4 +222,4 @@ const ServiceRequests = () => {
   );
 };
 
-export default ServiceRequests;
+export default MyPosts;
