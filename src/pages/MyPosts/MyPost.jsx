@@ -127,6 +127,7 @@ const MyPost = () => {
     location: '',
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); 
 
   const requestTypes = [
     'Home Maintenance',
@@ -142,6 +143,7 @@ const MyPost = () => {
     const fetchPosts = async () => {
       try {
         const response = await API.get('/api/service-requests');
+          setLoading(false);
         // Filter posts to show only those created by the current user
         const userPosts = response.data.filter(
           (post) => post.postedBy?._id === user.memberId || post.postedBy === user.memberId
@@ -181,6 +183,20 @@ const MyPost = () => {
       setError('Failed to submit service request.');
     }
   };
+
+  
+   if (loading) {
+  return (
+    <>
+     
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-white text-center">
+      <div class="loader"></div> <br/><br/>
+     <h5 className="text-secondary">Hold on, getting your posts...</h5>
+    </div>
+    
+    </>
+  );
+}
 
   return (
     <div className={styles.serviceRequests}>

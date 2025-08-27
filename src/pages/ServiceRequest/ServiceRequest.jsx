@@ -17,6 +17,7 @@ const ServiceRequests = () => {
     location: '',
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); 
 
   const requestTypes = [
     'Home Maintenance',
@@ -32,6 +33,7 @@ const ServiceRequests = () => {
     const fetchPosts = async () => {
       try {
         const response = await API.get('/api/service-requests');
+        setLoading(false);
         setPosts(response.data);
       } catch (err) {
         console.error('Error fetching posts:', err);
@@ -67,6 +69,21 @@ const ServiceRequests = () => {
       setError('Failed to submit service request.');
     }
   };
+
+
+   if (loading) {
+  return (
+    <>
+     
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-white text-center">
+      <div class="loader"></div> <br/><br/>
+     <h5 className="text-secondary">Hold on, getting the service request posts...</h5>
+    </div>
+    
+    </>
+  );
+}
+
 
   return (
     <div className={styles.serviceRequests}>
