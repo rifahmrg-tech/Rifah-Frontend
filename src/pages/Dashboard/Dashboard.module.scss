@@ -1,10 +1,72 @@
 
+// .dashboard {
+//   padding: 20px;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   background-color: #ced795;
+//   border-radius: 50px;
+// }
+
+// .dashboardTitle {
+//   text-align: center;
+//   margin-bottom: 30px;
+//   color: #333;
+// }
+
+// .buttonGrid {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   gap: 20px;
+// }
+
+// .dashboardButton {
+//   cursor: pointer;
+//   transition: transform 0.2s;
+//   text-align: center;
+//   padding: 15px;
+  
+//   &:hover {
+//     transform: translateY(-5px);
+//   }
+// }
+
+// .buttonIcon {
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 0 auto 10px;
+//   color: white;
+// }
+
+// .buttonText {
+//   h3 {
+//     margin: 0;
+//     font-size: 1rem;
+//     color: #333;
+//   }
+// }
+
+
+
+
+
+/* Ensure box-sizing is applied globally to prevent padding/margin issues */
+* {
+  box-sizing: border-box;
+}
+
 .dashboard {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
   background-color: #ced795;
   border-radius: 50px;
+  /* Ensure the dashboard doesn't overflow the viewport */
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .dashboardTitle {
@@ -24,10 +86,10 @@
   transition: transform 0.2s;
   text-align: center;
   padding: 15px;
-  
-  &:hover {
-    transform: translateY(-5px);
-  }
+}
+
+.dashboardButton:hover {
+  transform: translateY(-5px);
 }
 
 .buttonIcon {
@@ -41,10 +103,50 @@
   color: white;
 }
 
-.buttonText {
-  h3 {
-    margin: 0;
-    font-size: 1rem;
-    color: #333;
+.buttonText h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 10px; /* Reduce padding for smaller screens */
+    border-radius: 20px; /* Slightly smaller border-radius for mobile */
+  }
+
+  .buttonGrid {
+    grid-template-columns: 1fr; /* Single column for mobile */
+    gap: 15px; /* Reduce gap for tighter layout */
+  }
+
+  .dashboardButton {
+    padding: 10px; /* Reduce padding for buttons */
+  }
+
+  .buttonIcon {
+    width: 40px; /* Slightly smaller icon for mobile */
+    height: 40px;
+  }
+
+  .buttonText h3 {
+    font-size: 0.9rem; /* Slightly smaller text */
+  }
+}
+
+/* Extra small screens (e.g., very narrow phones) */
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 8px;
+    border-radius: 15px;
+  }
+
+  .buttonGrid {
+    gap: 10px;
+  }
+
+  .buttonText h3 {
+    font-size: 0.85rem;
   }
 }
