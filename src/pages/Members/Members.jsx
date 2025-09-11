@@ -165,7 +165,7 @@ const getDirectImageUrl = (driveUrl) => {
               <div className={styles.cardHeader}>
                 <div className={styles.avatar}>
                   {m.personPhoto ? (
-                    <img src={getDirectImageUrl(m.personPhoto)} alt={m.businessName} />
+                    <img src={getDirectImageUrl(m.personPhoto)} alt={m.businessName} className={styles.avatarImg} />
                   ) : (
                     <User size={32} />
                   )}
