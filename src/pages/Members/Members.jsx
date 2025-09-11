@@ -1,128 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import { User, Phone, Mail, Calendar, Building, Trash2 } from 'lucide-react';
+import { User, Phone, Mail, Building, Trash2 } from 'lucide-react';
 import styles from './Members.module.scss';
-import axios from 'axios';
 import API from '../../axios';
 
 function Members() {
   const [members, setMembers] = useState([]);
   const [view, setView] = useState('card');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [selectedProfession, setSelectedProfession] = useState('');
+  const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
-  // Fetch members from backend
+  // ✅ Fetch members
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await API.get('/api/members');
-         
-         setLoading(false);
-
+        const response = await API.get('/member'); // new backend route
+        setLoading(false);
 
         const data = response.data;
-        console.log(data);
-        // Safe handling based on structure
+        console.log("Fetched members:", data);
+
         if (Array.isArray(data)) {
           setMembers(data);
         } else if (data && Array.isArray(data.data)) {
-          setMembers(data);
-        } 
-
-        console.log("Fetched members:", data);
+          setMembers(data.data);
+        }
       } catch (err) {
-        console.log(err);
+        setError("Failed to fetch members");
+        setLoading(false);
+        console.error(err);
       }
     };
 
     fetchMembers();
   }, []);
 
-  const uniqueLocations = [...new Set(members.map(member => member.district))].sort();
-  const uniqueProfessions = [...new Set(members.map(member => member.profession))].sort();
+  // ✅ Unique filters
+  const uniqueDistricts = [...new Set(members.map(m => m.businessDistrict))].filter(Boolean).sort();
+  const uniqueCategories = [...new Set(members.map(m => m.businessCategory))].filter(Boolean).sort();
 
-  const filteredMembers = members.filter(member =>
-    (member.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     member.profession?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     member.district?.toLowerCase().includes(searchTerm.toLowerCase())) &&
-    (selectedLocation === '' || member.district === selectedLocation) &&
-    (selectedProfession === '' || member.profession === selectedProfession)
+  // ✅ Apply filters
+  const filteredMembers = members.filter(m =>
+    (m.businessName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     m.businessCategory?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     m.businessDistrict?.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (selectedDistrict === '' || m.businessDistrict === selectedDistrict) &&
+    (selectedCategory === '' || m.businessCategory === selectedCategory)
   );
 
+  // ✅ Handle delete
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this member?')) {
       try {
-        const response = await API.delete(`/api/members/${id}`, {
-          method: 'DELETE',
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to delete member');
-        }
-
-        setMembers(members.filter(member => member.id !== id));
+        await API.delete(`/member/${id}`);
+        setMembers(members.filter(m => m._id !== id));
       } catch (err) {
-        setError(err.message);
+        setError("Failed to delete member");
       }
     }
   };
 
   const handleClearFilters = () => {
-    setSelectedLocation('');
-    setSelectedProfession('');
+    setSelectedDistrict('');
+    setSelectedCategory('');
     setSearchTerm('');
   };
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    });
-  };
+
+
+  
+const getDirectImageUrl = (driveUrl) => {
+  if (!driveUrl) return null;
+  const match = driveUrl.match(/id=([^&]+)/);
+  return match ? `https://drive.google.com/thumbnail?id=${match[1]}` : driveUrl;
+};
+
+
+
 
   if (loading) {
-  return (
-    <>
-     
-    <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-white text-center">
-      <div class="loader"></div> <br/><br/>
-     <h5 className="text-secondary">Hold on, getting the providers details...</h5>
-    </div>
-    
-    </>
-  );
-}
+    return (
+      <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-white text-center">
+        <div className="loader"></div>
+        <br /><br />
+        <h5 className="text-secondary">Hold on, getting members data...</h5>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.members}>
       <div className={styles.header}>
-        <h2>Members Directory</h2>
-
-        
+        <h2>Business Members Directory</h2>
 
         <div className={styles.filters}>
           <select
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
+            value={selectedDistrict}
+            onChange={(e) => setSelectedDistrict(e.target.value)}
             className={styles.filterSelect}
           >
-            <option value="">All Locations</option>
-            {uniqueLocations.map(location => (
-              <option key={location} value={location}>{location}</option>
+            <option value="">All Districts</option>
+            {uniqueDistricts.map(d => (
+              <option key={d} value={d}>{d}</option>
             ))}
           </select>
 
           <select
-            value={selectedProfession}
-            onChange={(e) => setSelectedProfession(e.target.value)}
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
             className={styles.filterSelect}
           >
-            <option value="">All Professions</option>
-            {uniqueProfessions.map(profession => (
-              <option key={profession} value={profession}>{profession}</option>
+            <option value="">All Categories</option>
+            {uniqueCategories.map(c => (
+              <option key={c} value={c}>{c}</option>
             ))}
           </select>
 
@@ -149,7 +141,7 @@ function Members() {
 
           <input
             type="text"
-            placeholder="Search members..."
+            placeholder="Search businesses..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.searchInput}
@@ -159,46 +151,42 @@ function Members() {
 
       {view === 'card' ? (
         <div className={styles.cardView}>
-          {filteredMembers.map(member => (
-            <div key={member._id || member.id} className={styles.memberCard}>
+          {filteredMembers.map(m => (
+            <div key={m._id} className={styles.memberCard}>
               <div className={styles.cardHeader}>
                 <div className={styles.avatar}>
-                  {member.photo ? (
-                    <img src={member.photo} alt={member.name} />
+                  {m.personPhoto ? (
+                    <img src={getDirectImageUrl(m.personPhoto)} alt={m.businessName} />
                   ) : (
                     <User size={32} />
                   )}
                 </div>
                 <div className={styles.memberInfo}>
-                  <h3>{member.name}</h3>
-                  <p className={styles.profession}>{member.profession}</p>
-                  <p className={styles.ref}>ID: {member.refNumber}</p>
+                  <h3>{m.businessName}</h3>
+                  <p className={styles.profession}>{m.businessCategory}</p>
+                  <p className={styles.ref}>ID: {m.businessRegistrationNumber}</p>
                 </div>
               </div>
 
               <div className={styles.cardDetails}>
                 <div className={styles.detailItem}>
                   <Mail size={16} />
-                  <span>{member.email}</span>
+                  <span>{m.businessEmailAddress}</span>
                 </div>
                 <div className={styles.detailItem}>
                   <Phone size={16} />
-                  <span>{member.phone}</span>
-                </div>
-                <div className={styles.detailItem}>
-                  <Calendar size={16} />
-                  <span>{formatDate(member.dob)} ({member.age} yrs)</span>
+                  <span>{m.businessPhoneNumber}</span>
                 </div>
                 <div className={styles.detailItem}>
                   <Building size={16} />
-                  <span>{member.company}, {member.district}</span>
+                  <span>{m.businessDistrict}, {m.businessState}</span>
                 </div>
               </div>
 
               <div className={styles.cardFooter}>
                 <button 
                   className={styles.deleteBtn}
-                  onClick={() => handleDelete(member.id)}
+                  onClick={() => handleDelete(m._id)}
                 >
                   <Trash2 size={16} /> Remove
                 </button>
@@ -211,30 +199,28 @@ function Members() {
           <table>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Profession</th>
+                <th>Reg No</th>
+                <th>Business</th>
+                <th>Category</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Age</th>
-                <th>Location</th>
+                <th>District</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {filteredMembers.map(member => (
-                <tr key={member._id || member.id}>
-                  <td>{member.refNumber}</td>
-                  <td>{member.name}</td>
-                  <td>{member.profession}</td>
-                  <td>{member.email}</td>
-                  <td>{member.phone}</td>
-                  <td>{member.age}</td>
-                  <td>{member.district}</td>
+              {filteredMembers.map(m => (
+                <tr key={m._id}>
+                  <td>{m.businessRegistrationNumber}</td>
+                  <td>{m.businessName}</td>
+                  <td>{m.businessCategory}</td>
+                  <td>{m.businessEmailAddress}</td>
+                  <td>{m.businessPhoneNumber}</td>
+                  <td>{m.businessDistrict}</td>
                   <td>
                     <button 
                       className={styles.deleteBtn}
-                      onClick={() => handleDelete(member.id)}
+                      onClick={() => handleDelete(m._id)}
                     >
                       <Trash2 size={14} />
                     </button>
