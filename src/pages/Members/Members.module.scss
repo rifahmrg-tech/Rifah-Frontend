@@ -162,18 +162,18 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+        // background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         font-weight: 600;
-        box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
+        // box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
       }
 
       .avatarImg {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;  // makes it circular
   object-fit: cover;   // crops instead of stretching
 }
