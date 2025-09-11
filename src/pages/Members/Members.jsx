@@ -71,11 +71,20 @@ function Members() {
 
 
   
+// const getDirectImageUrl = (driveUrl) => {
+//   if (!driveUrl) return null;
+//   const match = driveUrl.match(/id=([^&]+)/);
+//   return match ? `https://drive.google.com/thumbnail?id=${match[1]}` : driveUrl;
+// };
 const getDirectImageUrl = (driveUrl) => {
   if (!driveUrl) return null;
-  const match = driveUrl.match(/id=([^&]+)/);
-  return match ? `https://drive.google.com/thumbnail?id=${match[1]}` : driveUrl;
+  // Match /d/{fileId}/ in the link
+  const match = driveUrl.match(/\/d\/([^/]+)/);
+  return match
+    ? `https://drive.google.com/thumbnail?id=${match[1]}`
+    : driveUrl;
 };
+
 
 
 
