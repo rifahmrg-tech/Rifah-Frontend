@@ -26,8 +26,15 @@ function Header({title,onMenuClick}) {
 
     useEffect(()=>{
        if (user) fetchNotification();
+      //  fetchMember(user);
 }, [user, refreshNotifications]); // 👈 now also refetch when toggled
 
+
+// const fetchMember= async(user)=>{
+//   const res = await API.get('/member');
+
+
+// }
 
     const fetchNotification = async()=>{
       try{
@@ -58,8 +65,18 @@ function Header({title,onMenuClick}) {
         <button className={styles.title} onClick={scrollToTop}>{title}</button>
       </div>
      
-       
- 
+
+     {/* <div>hello , {user.name}</div> */}
+
+     <div className={styles.greeting}>
+  {user?.name ? (
+    <span>Hello <strong>{user.name}</strong>, welcome to Rifah Marketplace!</span>
+  ) : (
+    <span>Welcome to Rifah Marketplace!</span>
+  )}
+</div>
+    
+      
       <div className={styles.right}>
         <div className={styles.notificationWrapper}>
         <button className={styles.iconButton} onClick={toggleDropdown}>
