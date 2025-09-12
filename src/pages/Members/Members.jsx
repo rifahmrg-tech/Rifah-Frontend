@@ -208,7 +208,7 @@ const getDirectImageUrl = (driveUrl) => {
                    {/* forAdminDeleteButton */}
 
                       <div className={styles.cardFooter}>    
-          {username === "admin" && (
+          {username === "admin@gmail.com" && (
             <button 
               className={styles.deleteBtn}
               onClick={() => handleDelete(m._id)}
@@ -252,10 +252,10 @@ const getDirectImageUrl = (driveUrl) => {
                       <Trash2 size={14} />
                     </button>
                   </td> */}
-                  
+
                     {/* forAdminDeleteButton */}
                               <td>
-              {username === "admin" && (
+              {username === "admin@gmail.com" && (
                 <button 
                   className={styles.deleteBtn}
                   onClick={() => handleDelete(m._id)}
