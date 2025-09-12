@@ -20,6 +20,8 @@ const handleLogin = async () => {
       const res = await API.post("/auth/login", formData);
      
       if (res.data.success) {
+
+         localStorage.setItem("username", formData.username); //forAdminDeleteButton
       
         login(res.data.user); // set user context
         navigate('/'); // redirect

@@ -11,6 +11,8 @@ function Members() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const username = localStorage.getItem("username"); //forAdminDeleteButton
+
 
   // ✅ Fetch members
   useEffect(() => {
@@ -194,14 +196,28 @@ const getDirectImageUrl = (driveUrl) => {
                 </div>
               </div>
 
-              <div className={styles.cardFooter}>
+              {/* <div className={styles.cardFooter}>
                 <button 
                   className={styles.deleteBtn}
                   onClick={() => handleDelete(m._id)}
                 >
                   <Trash2 size={16} /> Remove
                 </button>
-              </div>
+              </div> */}
+
+                   {/* forAdminDeleteButton */}
+
+                      <div className={styles.cardFooter}>    
+          {username === "admin" && (
+            <button 
+              className={styles.deleteBtn}
+              onClick={() => handleDelete(m._id)}
+            >
+              <Trash2 size={16} /> Remove
+            </button>
+          )}
+        </div>
+
             </div>
           ))}
         </div>
@@ -228,14 +244,27 @@ const getDirectImageUrl = (driveUrl) => {
                   <td>{m.businessEmailAddress}</td>
                   <td>{m.businessPhoneNumber}</td>
                   <td>{m.businessDistrict}</td>
-                  <td>
+                  {/* <td>
                     <button 
                       className={styles.deleteBtn}
                       onClick={() => handleDelete(m._id)}
                     >
                       <Trash2 size={14} />
                     </button>
-                  </td>
+                  </td> */}
+                  
+                    {/* forAdminDeleteButton */}
+                              <td>
+              {username === "admin" && (
+                <button 
+                  className={styles.deleteBtn}
+                  onClick={() => handleDelete(m._id)}
+                >
+                  <Trash2 size={14} />
+                </button>
+              )}
+            </td>
+
                 </tr>
               ))}
             </tbody>
