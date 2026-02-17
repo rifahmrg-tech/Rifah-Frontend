@@ -1,0 +1,183 @@
+@use "sass:color";
+
+// Colors
+$primary: #007bff; 
+$whatsapp: #25d366; 
+$text-dark: #333;
+$text-light: #666;
+$bg-light: #f8f9fa;
+$white: #ffffff;
+$border: #e0e0e0;
+$shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+
+  .searchBarSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;               // Reduced gap (was 15px)
+    background: $white;
+    padding: 15px;           // Reduced padding (was 25px)
+    border-radius: 12px;
+    box-shadow: $shadow;
+    margin-bottom: 30px;
+    align-items: center;
+    max-width: 950px;        // ✅ ADDED: Keeps the bar from getting too wide
+    margin-left: auto;       // Centers the bar
+    margin-right: auto;      // Centers the bar
+
+    .inputWrapper, .selectWrapper {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        position: absolute;
+        left: 12px;
+        color: $text-light;
+        pointer-events: none;
+        z-index: 10;         // Ensures icon stays on top
+      }
+
+      input, select {
+        width: 100%;
+        height: 45px;        // ✅ ADDED: Fixed height for consistency
+        // ✅ FIXED: Changed 122px to 12px below!
+        padding: 0 12px 0 40px; 
+        border: 1px solid $border;
+        border-radius: 8px;
+        font-size: 14px;     // Reduced font size slightly
+        color: $text-dark;
+        outline: none;
+        transition: border-color 0.3s ease;
+        background-color: $white;
+
+        &:focus {
+          border-color: $primary;
+        }
+      }
+      
+      select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+      }
+    }
+
+    .searchBtn {
+      background-color: $primary;
+      color: $white;
+      border: none;
+      height: 45px;          // ✅ ADDED: Matches input height
+      padding: 0 30px;       // Adjusted padding
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;         // Centers text vertically
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: color.adjust($primary, $lightness: -10%);
+      }
+    }
+  }
+
+  // Grid for Results
+  .resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); // Slightly smaller cards
+    gap: 20px;
+
+    .card {
+      background: $white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid $border;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      }
+
+      h3 {
+        margin: 0 0 10px 0;
+        color: $primary;
+        font-size: 1.1rem;
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: $text-dark;
+
+        strong {
+          color: $text-light;
+        }
+      }
+
+      .desc {
+        margin-top: 12px;
+        color: $text-light;
+        font-style: italic;
+        line-height: 1.5;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+        font-size: 13px;
+      }
+
+      .whatsappBtn {
+        width: 100%;
+        margin-top: 15px;
+        background-color: $whatsapp;
+        color: $white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 14px;
+
+        &:hover {
+          background-color: color.adjust($whatsapp, $lightness: -5%);
+        }
+      }
+    }
+  }
+}
+
+// Mobile Responsive
+@media (max-width: 768px) {
+  .container {
+    .searchBarSection {
+      flex-direction: column;
+      padding: 15px;
+      max-width: 100%; // Full width on mobile
+
+      .inputWrapper, .selectWrapper, .searchBtn {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+
+    .resultsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -190,7 +190,7 @@ const MyPost = () => {
     <>
      
     <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-white text-center">
-      <div class="loader"></div> <br/><br/>
+      <div className="loader"></div> <br/><br/>
      <h5 className="text-secondary">Hold on, getting your posts...</h5>
     </div>
     

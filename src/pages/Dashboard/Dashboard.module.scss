@@ -150,3 +150,121 @@
     font-size: 0.85rem;
   }
 }
+
+//----------------------17/02------------------5.37-----------------------
+
+// * {
+//   box-sizing: border-box;
+// }
+
+// .dashboard {
+//   padding: 20px;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   background-color: #ced795;
+//   border-radius: 30px; /* Slightly reduced for better fit */
+//   width: 100%;
+// }
+
+// .dashboardTitle {
+//   text-align: center;
+//   margin-bottom: 30px;
+//   color: #333;
+//   font-size: 1.8rem;
+//   font-weight: bold;
+// }
+
+// .buttonGrid {
+//   display: grid;
+//   /* ✅ FIX: This makes it responsive automatically. 
+//      It fits as many 250px columns as possible. */
+//   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+//   gap: 20px;
+//   width: 100%;
+// }
+
+// .dashboardButton {
+//   background-color: white; /* Added based on your screenshot */
+//   border-radius: 15px;     /* Added rounded corners for cards */
+//   cursor: pointer;
+//   transition: transform 0.2s, box-shadow 0.2s;
+//   text-align: center;
+//   padding: 30px 20px;      /* More padding for better look */
+//   box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Soft shadow */
+  
+//   /* Flexbox to center content vertically */
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   min-height: 160px;       /* Ensures uniform height */
+// }
+
+// .dashboardButton:hover {
+//   transform: translateY(-5px);
+//   box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+// }
+
+// .buttonIcon {
+//   width: 60px;
+//   height: 60px;
+//   border-radius: 50%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-bottom: 15px;
+//   color: white; /* Icon color */
+//   font-size: 24px;
+  
+//   /* If you want colored circles behind icons, set bg color in JS or specific classes */
+//   background-color: #f0f0f0; /* Default placeholder bg */
+// }
+
+// .buttonText h3 {
+//   margin: 0;
+//   font-size: 1.1rem;
+//   font-weight: 600;
+//   color: #333;
+// }
+
+// /* Mobile view adjustments */
+// @media (max-width: 768px) {
+//   .dashboard {
+//     padding: 15px;
+//     border-radius: 20px;
+//   }
+
+//   .buttonGrid {
+//     /* On mobile, we can force 1 column if the cards get too small, 
+//        but the auto-fit above usually handles this. 
+//        We can reduce the gap here. */
+//     gap: 15px;
+//   }
+
+//   .dashboardButton {
+//     padding: 20px;
+//     min-height: 120px; /* Smaller cards on mobile */
+//   }
+
+//   .dashboardTitle {
+//     font-size: 1.5rem;
+//     margin-bottom: 20px;
+//   }
+// }
+
+// /* Extra small screens */
+// @media (max-width: 480px) {
+//   .dashboard {
+//     padding: 10px;
+//     border-radius: 15px;
+//   }
+  
+//   /* Force single column on very small screens to be safe */
+//   .buttonGrid {
+//     grid-template-columns: 1fr; 
+//   }
+
+//   .buttonText h3 {
+//     font-size: 0.95rem;
+//   }
+// }
